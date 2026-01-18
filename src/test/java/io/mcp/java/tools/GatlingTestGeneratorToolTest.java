@@ -9,23 +9,16 @@ class GatlingTestGeneratorToolTest {
 
   @Test
   void getToolDefinition() {
-    GatlingTestGeneratorTool gatlingTestGeneratorTool = new GatlingTestGeneratorTool();
+    ToolSchemaLoader schemaLoader = new ToolSchemaLoader();
+    ToolFactory toolFactory = new ToolFactory(schemaLoader);
 
-    var toolDef = gatlingTestGeneratorTool.getToolDefinition();
+    var toolSpecification = toolFactory.createToolSpecification(new Tool.GatlingTestGenerator());
+    var toolDef = toolSpecification.tool();
 
     assertEquals("generate_gatling_test", toolDef.name());
     assertEquals("Gatling Test Generator", toolDef.title());
     assertNotNull(toolDef.inputSchema());
     assertNotNull(toolDef.inputSchema().properties());
-  }
-
-  @Test
-  void getToolHandler() {
-    GatlingTestGeneratorTool gatlingTestGeneratorTool = new GatlingTestGeneratorTool();
-
-    var handler = gatlingTestGeneratorTool.getToolHandler();
-
-    assertNotNull(handler);
-    assertInstanceOf(GatlingTestGeneratorHandler.class, handler);
+    assertInstanceOf(GatlingTestGeneratorHandler.class, toolSpecification.callHandler());
   }
 }

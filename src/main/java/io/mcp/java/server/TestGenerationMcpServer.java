@@ -2,8 +2,9 @@ package io.mcp.java.server;
 
 import static io.mcp.java.mapper.MapperContext.getObjectMapper;
 
-import io.mcp.java.tools.GatlingTestGeneratorTool;
-import io.mcp.java.tools.TestScenariosSuggesterTool;
+import io.mcp.java.tools.Tool;
+import io.mcp.java.tools.ToolFactory;
+import io.mcp.java.tools.ToolSchemaLoader;
 import io.modelcontextprotocol.json.jackson.JacksonMcpJsonMapper;
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpSyncServer;
@@ -28,7 +29,9 @@ public class TestGenerationMcpServer {
                 McpSchema.ServerCapabilities.builder().tools(true).prompts(true).logging().build())
             .build();
 
-    mcpSyncServer.addTool(new TestScenariosSuggesterTool().getToolSpecification());
-    mcpSyncServer.addTool(new GatlingTestGeneratorTool().getToolSpecification());
+    ToolFactory toolFactory = new ToolFactory(new ToolSchemaLoader());
+
+    mcpSyncServer.addTool(toolFactory.createToolSpecification(new Tool.GatlingTestGenerator()));
+    mcpSyncServer.addTool(toolFactory.createToolSpecification(new Tool.TestScenariosSuggester()));
   }
 }

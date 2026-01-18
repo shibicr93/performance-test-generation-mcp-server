@@ -8,9 +8,13 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GatlingTestGeneratorHandler implements ToolHandler {
+public final class GatlingTestGeneratorHandler implements ToolHandler {
   private static final Logger LOG =
       LoggerFactory.getLogger(GatlingTestGeneratorHandler.class.getName());
+
+  private static String getSystemPrompt() {
+    return "You are an expert Gatling performance test generator. Generate Scala-based Gatling test scripts that are production-ready and follow best practices. Return only the Scala code without any explanations.";
+  }
 
   @Override
   public McpSchema.CallToolResult apply(
@@ -18,8 +22,10 @@ public class GatlingTestGeneratorHandler implements ToolHandler {
     LOG.info("GatlingTestGeneratorHandler.apply()");
     // Check if client supports sampling
     if (exchange.getClientCapabilities().sampling() == null) {
-      return new McpSchema.CallToolResult(
-          List.of(new McpSchema.TextContent("Client does not support sampling capability")), true);
+      return new McpSchema.CallToolResult.Builder()
+          .addContent(new McpSchema.TextContent("Client does not support sampling capability"))
+          .isError(true)
+          .build();
     }
 
     // Extract arguments from the request
@@ -51,8 +57,7 @@ public class GatlingTestGeneratorHandler implements ToolHandler {
                     .speedPriority(0.3) // Lower speed importance
                     .costPriority(0.7)
                     .build())
-            .systemPrompt(
-                "You are an expert Gatling performance test generator. Generate Scala-based Gatling test scripts that are production-ready and follow best practices. Return only the Scala code without any explanations.")
+            .systemPrompt(getSystemPrompt())
             .maxTokens(4000)
             .build();
 

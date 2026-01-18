@@ -7,7 +7,7 @@ import io.modelcontextprotocol.spec.McpError;
 import io.modelcontextprotocol.spec.McpSchema;
 import java.util.*;
 
-public class SuggestTestScenariosHandler implements ToolHandler {
+public final class SuggestTestScenariosHandler implements ToolHandler {
 
   @Override
   public McpSchema.CallToolResult apply(
@@ -22,7 +22,7 @@ public class SuggestTestScenariosHandler implements ToolHandler {
           .build();
 
     } catch (JsonProcessingException e) {
-      throw McpError.builder(500)
+      throw McpError.builder(McpSchema.ErrorCodes.INTERNAL_ERROR)
           .data(e)
           .message("Failed to process test scenario suggestions")
           .build();

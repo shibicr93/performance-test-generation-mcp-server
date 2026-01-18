@@ -17,4 +17,5 @@ A description of the new tool, resource, or prompt you want the MCP server to su
 Any other ways you've tried to generate these tests.
 
 **Additional Context**
-Any mockups or examples of the performance test code (e.g., a specific `.jmx` or `.scala` file) you'd like the server to generate.
+Any mockups or examples of the performance test code (e.g., a specific `.jmx` or `.scala` file) you'd like the server to
+generate.

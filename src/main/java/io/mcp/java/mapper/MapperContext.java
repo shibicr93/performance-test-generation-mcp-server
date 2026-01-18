@@ -1,6 +1,7 @@
 package io.mcp.java.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.modelcontextprotocol.json.jackson.JacksonMcpJsonMapper;
 
 public class MapperContext {
   public static ObjectMapper getObjectMapper() {
@@ -8,5 +9,9 @@ public class MapperContext {
         .configure(
             com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
             false);
+  }
+
+  public static JacksonMcpJsonMapper getMcpJsonMapper() {
+    return new JacksonMcpJsonMapper(getObjectMapper());
   }
 }
