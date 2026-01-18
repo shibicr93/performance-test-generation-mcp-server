@@ -1,0 +1,28 @@
+{
+  "name": "validate_test_coverage",
+  "description": "Validate that generated tests cover all critical API endpoints",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "apiSpec": {
+        "type": "object",
+        "description": "OpenAPI spec"
+      },
+      "testScenarios": {
+        "type": "array",
+        "description": "Generated scenarios",
+        "items": {
+          "type": "object"
+        }
+      },
+      "coverageThreshold": {
+        "type": "number",
+        "description": "Coverage threshold"
+      }
+    },
+    "required": [
+      "apiSpec",
+      "testScenarios"
+    ]
+  }
+}

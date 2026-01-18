@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "apiAnalysis": {
+      "type": "object",
+      "description": "Analysis results from analyze_openapi_spec"
+    },
+    "expectedLoad": {
+      "type": "object",
+      "description": "Expected load parameters"
+    }
+  },
+  "required": [
+    "apiAnalysis"
+  ]
+}

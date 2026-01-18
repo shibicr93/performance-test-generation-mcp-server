@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "scenarios": {
+      "type": "array",
+      "description": "Test scenarios",
+      "items": {
+        "type": "object"
+      }
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Target API base URL"
+    },
+    "testName": {
+      "type": "string",
+      "description": "Name for the test class"
+    }
+  },
+  "required": [
+    "scenarios",
+    "baseUrl"
+  ]
+}
