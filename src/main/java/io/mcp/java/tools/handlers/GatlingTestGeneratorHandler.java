@@ -70,17 +70,21 @@ public final class GatlingTestGeneratorHandler implements ToolHandler {
 
   private String buildGenerationPrompt(String scenarios, String baseUrl, String testName) {
     return String.format(
-        "Generate a Gatling performance test script in Scala with the following specifications:\n"
-            + "- Test Name: %s\n"
-            + "- Base URL: %s\n"
-            + "- Test Scenarios:\n%s\n\n"
-            + "The generated test should:\n"
-            + "1. Use Gatling best practices\n"
-            + "2. Include proper setup, execution, and assertions\n"
-            + "3. Handle HTTP requests appropriately\n"
-            + "4. Include error handling and response validation\n"
-            + "5. Be ready for production use\n\n"
-            + "Return only the Scala code.",
+        """
+                    Generate a Gatling performance test script in Scala with the following specifications:
+                    - Test Name: %s
+                    - Base URL: %s
+                    - Test Scenarios:
+                    %s
+
+                    The generated test should:
+                    1. Use Gatling best practices
+                    2. Include proper setup, execution, and assertions
+                    3. Handle HTTP requests appropriately
+                    4. Include error handling and response validation
+                    5. Be ready for production use
+
+                    Return only the Scala code.""",
         testName, baseUrl, scenarios);
   }
 }

@@ -57,9 +57,7 @@ public final class SuggestTestScenariosHandler implements ToolHandler {
     scenarios.add(generateSmokeTest(endpoints));
 
     switch (testLevel.toLowerCase()) {
-      case "basic" -> {
-        scenarios.add(generateBasicLoadTest(endpoints));
-      }
+      case "basic" -> scenarios.add(generateBasicLoadTest(endpoints));
       case "comprehensive" -> {
         scenarios.add(generateBasicLoadTest(endpoints));
         scenarios.add(generateStressTest(endpoints));

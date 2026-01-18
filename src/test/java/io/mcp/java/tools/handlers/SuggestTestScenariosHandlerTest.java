@@ -45,7 +45,7 @@ class SuggestTestScenariosHandlerTest {
     List<McpSchema.Content> contents = result.content();
     assertFalse(contents.isEmpty());
 
-    String jsonResult = ((McpSchema.TextContent) contents.get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) contents.getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     assertNotNull(response.get("scenarios"));
@@ -67,7 +67,7 @@ class SuggestTestScenariosHandlerTest {
 
     // Assert
     assertNotNull(result);
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
@@ -95,7 +95,7 @@ class SuggestTestScenariosHandlerTest {
 
     // Assert
     assertNotNull(result);
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
@@ -125,7 +125,7 @@ class SuggestTestScenariosHandlerTest {
 
     // Assert
     assertNotNull(result);
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
@@ -157,7 +157,7 @@ class SuggestTestScenariosHandlerTest {
     McpSchema.CallToolResult result = handler.apply(mockExchange, mockRequest);
 
     // Assert
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
 
@@ -181,7 +181,7 @@ class SuggestTestScenariosHandlerTest {
     McpSchema.CallToolResult result = handler.apply(mockExchange, mockRequest);
 
     // Assert
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     assertNotNull(response.get("summary"), "Response should include summary");
@@ -201,7 +201,7 @@ class SuggestTestScenariosHandlerTest {
 
     // Assert
     assertNotNull(result);
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
@@ -227,7 +227,7 @@ class SuggestTestScenariosHandlerTest {
     assertNotNull(result, "Result should not be null");
     assertFalse(result.content().isEmpty(), "Result content should not be empty");
 
-    McpSchema.Content content = result.content().get(0);
+    McpSchema.Content content = result.content().getFirst();
     assertInstanceOf(McpSchema.TextContent.class, content);
 
     String jsonResult = ((McpSchema.TextContent) content).text();
@@ -246,7 +246,7 @@ class SuggestTestScenariosHandlerTest {
 
     // Assert
     assertNotNull(result);
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
 
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
@@ -264,7 +264,7 @@ class SuggestTestScenariosHandlerTest {
     McpSchema.CallToolResult result = handler.apply(mockExchange, mockRequest);
 
     // Assert
-    String jsonResult = ((McpSchema.TextContent) result.content().get(0)).text();
+    String jsonResult = ((McpSchema.TextContent) result.content().getFirst()).text();
     Map<String, Object> response = parseResponse(jsonResult);
     List<Map<String, Object>> scenarios = (List<Map<String, Object>>) response.get("scenarios");
 
